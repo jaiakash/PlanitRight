@@ -1,28 +1,28 @@
-function startTime() {
-    var today = new Date();
-    var hrs = today.getHours();
-    var min = checkTime(today.getMinutes());
-    var sec = checkTime(today.getSeconds());
-    var ampm = AmPm(today.getHours());
-    document.getElementById('time').innerHTML = hrs + ":" + min + ":" + sec + " " + ampm;
-    var t = setTimeout(startTime, 1000);
-  }
+var  date = new Date();
 
-  function checkTime(i) {
-    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
-    return i;
-  }
+var monthDays = document.querySelector('.days')
 
-  function AmPm(hours){
-    var meridiem = "AM";
-    if (hours > 12) {
-        hours = hours - 12;
-        meridiem = "PM";
-    }
+var months = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
 
-    // 0 AM and 0 PM should read as 12
-    if (hours === 0) {
-        hours = 12;    
-    }
-    return meridiem;
-  }
+document.querySelector(".date h1").innerHTML = months[date.getMonth()];
+document.querySelector(".date p").innerHTML = new Date().toDateString();
+
+let days = ""
+
+for(var i=1;i<=31;i++){
+  days += `<div>${i}</div>`
+  monthDays.innerHTML = days
+}
