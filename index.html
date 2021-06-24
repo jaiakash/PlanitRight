@@ -8,6 +8,8 @@
 </head>
 
 <body>
+    <div id="time">Date</div>
+
     <div class="container">
         <div class="calendar">
 
@@ -29,11 +31,20 @@
                 <div>Fri</div>
                 <div>Sat</div>
             </div>
-
-            <div class="days"></div>
-            
+            <div class="days"></div>  
         </div>
-        <div id="time">Date</div>
+
+        <div class="event_box">
+            <div id=event_info>Tasks</div>
+
+            <div id=event>Event Name</div>
+
+            <div class="Action">
+                <button class="button" onclick="add_button()">Add</button>
+                <button class="button" onclick="del_button()">Delete</button>
+            </div>
+        </div>
+
     </div>
     <script src="web.js"></script>
 </body>

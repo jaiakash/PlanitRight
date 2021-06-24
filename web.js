@@ -1,5 +1,37 @@
 var  date = new Date();
 
+var currect_task_obj="";
+
+function startTime() {
+  var today = new Date();
+  var hrs = today.getHours();
+  var min = checkTime(today.getMinutes());
+  var sec = checkTime(today.getSeconds());
+  var ampm = AmPm(today.getHours());
+  var myClock = document.getElementById("time");
+  myClock.innerHTML = "Clock <br>"+ hrs + ":" + min + ":" + sec + " " + ampm;
+  var t = setTimeout(startTime, 1000);
+}
+
+function checkTime(i) {
+  if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+  return i;
+}
+
+function AmPm(hours){
+  var meridiem = "AM";
+  if (hours > 12) {
+      hours = hours - 12;
+      meridiem = "PM";
+  }
+
+  // 0 AM and 0 PM should read as 12
+  if (hours === 0) {
+      hours = 12;    
+  }
+  return meridiem;
+}
+
 var render = () => {
 
   date.setDate(1)
@@ -69,47 +101,32 @@ var render = () => {
 }
 
 function dateClick(obj) {
-  prev_task = window.localStorage.getItem(obj.className);
-  if(prev_task == null || prev_task == ""){
-    var todo = prompt("Enter task for date "+obj.className);
-    window.localStorage.setItem(obj.className, todo);
-  }
-  else{
-    alert("Task for "+ obj.className +" is " + prev_task);
-  }
-
+  currect_task_obj=obj.className;
+  ref_button();
   //Remove Everything
   //window.localStorage.clear();
 }
 
-function startTime() {
-  var today = new Date();
-  var hrs = today.getHours();
-  var min = checkTime(today.getMinutes());
-  var sec = checkTime(today.getSeconds());
-  var ampm = AmPm(today.getHours());
-  var myClock = document.getElementById("time");
-  myClock.innerHTML = "Clock <br>"+ hrs + ":" + min + ":" + sec + " " + ampm;
-  var t = setTimeout(startTime, 1000);
+function del_button(){
+  console.log("Delete");
+  localStorage.removeItem(currect_task_obj);
+  ref_button();
 }
 
-function checkTime(i) {
-  if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
-  return i;
+function add_button(){
+  console.log("Add");
+  prev_task = prompt("Enter task for date "+currect_task_obj);
+  if(prev_task !=null && prev_task != "")
+    window.localStorage.setItem(currect_task_obj, prev_task);
+  ref_button();
 }
 
-function AmPm(hours){
-  var meridiem = "AM";
-  if (hours > 12) {
-      hours = hours - 12;
-      meridiem = "PM";
-  }
-
-  // 0 AM and 0 PM should read as 12
-  if (hours === 0) {
-      hours = 12;    
-  }
-  return meridiem;
+function ref_button(){
+  console.log("Refresh");
+  prev_task = window.localStorage.getItem(currect_task_obj);
+  document.getElementById("event_info").innerHTML = "Task for "+ currect_task_obj;
+  if(prev_task=="" || prev_task==null)prev_task="No Task";
+  document.getElementById("event").innerHTML = prev_task;
 }
 
 document.querySelector(".prev").addEventListener("click", () => {
