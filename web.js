@@ -53,10 +53,10 @@ var render = () => {
 
   for(var i=1;i<=lastDay;i++){
     if(i===new Date().getDate() && date.getMonth()===new Date().getMonth()) {
-      days += `<div class="today">${i}</div>`
+      days += `<div class="today" onclick="dateClick(this)">${i}</div>`
     }
     else {
-      days += `<div class="${i}" onclick="dateClick(this)">${i}</div>`
+      days += `<div class="${months[date.getMonth()]} ${i} ${date.getFullYear()}" onclick="dateClick(this)">${i}</div>`
     }
   }
 
@@ -68,15 +68,14 @@ var render = () => {
 }
 
 function dateClick(obj) {
-  var todo = prompt("Please enter task for date");
-  let text;
-  if (todo == null || todo == "") {
-    text = "No Task";
-  } else {
-    text = "Task for day is " + todo;
+  prev_task = window.localStorage.getItem(obj.className);
+  if(prev_task == null || prev_task == ""){
+    var todo = prompt("Enter task for date "+obj.className);
+    window.localStorage.setItem(obj.className, "Task for "+ obj.className +" is " + todo);
   }
-
-  alert(obj.className);
+  else{
+    alert(prev_task);
+  }
 }
 
 document.querySelector(".prev").addEventListener("click", () => {
