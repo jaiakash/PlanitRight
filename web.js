@@ -56,7 +56,7 @@ var render = () => {
       days += `<div class="today">${i}</div>`
     }
     else {
-      days += `<div>${i}</div>`
+      days += `<div class="${i}" onclick="dateClick(this)">${i}</div>`
     }
   }
 
@@ -65,6 +65,18 @@ var render = () => {
   }
   monthDays.innerHTML = days
 
+}
+
+function dateClick(obj) {
+  var todo = prompt("Please enter task for date");
+  let text;
+  if (todo == null || todo == "") {
+    text = "No Task";
+  } else {
+    text = "Task for day is " + todo;
+  }
+
+  alert(obj.className);
 }
 
 document.querySelector(".prev").addEventListener("click", () => {
