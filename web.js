@@ -65,17 +65,52 @@ var render = () => {
   }
   monthDays.innerHTML = days
 
+  startTime();
 }
 
 function dateClick(obj) {
   prev_task = window.localStorage.getItem(obj.className);
   if(prev_task == null || prev_task == ""){
     var todo = prompt("Enter task for date "+obj.className);
-    window.localStorage.setItem(obj.className, "Task for "+ obj.className +" is " + todo);
+    window.localStorage.setItem(obj.className, todo);
   }
   else{
-    alert(prev_task);
+    alert("Task for "+ obj.className +" is " + prev_task);
   }
+
+  //Remove Everything
+  //window.localStorage.clear();
+}
+
+function startTime() {
+  var today = new Date();
+  var hrs = today.getHours();
+  var min = checkTime(today.getMinutes());
+  var sec = checkTime(today.getSeconds());
+  var ampm = AmPm(today.getHours());
+  var myClock = document.getElementById("time");
+  myClock.innerHTML = hrs + ":" + min + ":" + sec + " " + ampm;
+  console.log(hrs + ":" + min + ":" + sec + " " + ampm);
+  var t = setTimeout(startTime, 1000);
+}
+
+function checkTime(i) {
+  if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+  return i;
+}
+
+function AmPm(hours){
+  var meridiem = "AM";
+  if (hours > 12) {
+      hours = hours - 12;
+      meridiem = "PM";
+  }
+
+  // 0 AM and 0 PM should read as 12
+  if (hours === 0) {
+      hours = 12;    
+  }
+  return meridiem;
 }
 
 document.querySelector(".prev").addEventListener("click", () => {
