@@ -114,10 +114,9 @@ body{
 #time {
   top: 0; left: 0; bottom: 0; right: 0;
   padding-right: 25px;
-  padding-top: 40px;
+  padding-top: 20px;
   font-family: courier, monospace;
   text-align: center;
-  font-size: 20px;
   margin:50px auto;
 	background: coral;
   width:350px;
@@ -145,7 +144,6 @@ body{
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  margin-top: 175px;
 }
 
 #event {
