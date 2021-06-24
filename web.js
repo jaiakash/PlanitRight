@@ -113,8 +113,13 @@ function del_button(){
 function add_button(){
   console.log("Add");
   prev_task = prompt("Enter task for date "+currect_task_obj);
-  if(prev_task !=null && prev_task != "")
-    window.localStorage.setItem(currect_task_obj, prev_task);
+  if(prev_task !=null && prev_task != ""){
+    old_task = window.localStorage.getItem(currect_task_obj);
+    if(old_task==null)
+      window.localStorage.setItem(currect_task_obj,prev_task);
+    else
+    window.localStorage.setItem(currect_task_obj, old_task + "<br>"+ prev_task);
+  }
   ref_button();
 }
 
