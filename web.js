@@ -4,21 +4,7 @@ var currect_task_obj="";
 
 function startTime() {
   var today = new Date();
-  var hrs = today.getHours();
-  var min = checkTime(today.getMinutes());
-  var sec = checkTime(today.getSeconds());
-  var ampm = AmPm(today.getHours());
-  var myClock = document.getElementById("time");
-  myClock.innerHTML = hrs + ":" + min + ":" + sec + " " + ampm;
-  var t = setTimeout(startTime, 1000);
-}
-
-function checkTime(i) {
-  if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
-  return i;
-}
-
-function AmPm(hours){
+  var hours = today.getHours();
   var meridiem = "AM";
   if (hours > 12) {
       hours = hours - 12;
@@ -29,7 +15,18 @@ function AmPm(hours){
   if (hours === 0) {
       hours = 12;    
   }
-  return meridiem;
+
+  var min = checkTime(today.getMinutes());
+  var sec = checkTime(today.getSeconds());
+  var myClock = document.getElementById("time");
+
+  myClock.innerHTML = hours + ":" + min + ":" + sec + " " + meridiem;
+  var t = setTimeout(startTime, 1000);
+}
+
+function checkTime(i) {
+  if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+  return i;
 }
 
 var render = () => {
