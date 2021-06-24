@@ -9,7 +9,7 @@ function startTime() {
   var sec = checkTime(today.getSeconds());
   var ampm = AmPm(today.getHours());
   var myClock = document.getElementById("time");
-  myClock.innerHTML = "Clock <br>"+ hrs + ":" + min + ":" + sec + " " + ampm;
+  myClock.innerHTML = hrs + ":" + min + ":" + sec + " " + ampm;
   var t = setTimeout(startTime, 1000);
 }
 
