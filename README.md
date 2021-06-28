@@ -1,4 +1,4 @@
-# PlanitRight
+# PlanitRight Spider Web Task 1
 
 Create a Schedule Planning website that contains a calendar, a clock and a list
 of tasks to be completed. The Website should allow the users to store different
